@@ -20,7 +20,7 @@ export default function FormStep({ stepNo, stepName, currentStep }: Props) {
         </span>
       </div>
       <div className="hidden md:flex md:flex-col">
-        <p className="hidden text-sm uppercase text-gray-300 md:inline">
+        <p className="hidden text-sm uppercase text-lightGray md:inline">
           Step {stepNo}
         </p>
         <p className="hidden text-base uppercase text-white md:inline">
