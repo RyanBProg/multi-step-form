@@ -1,5 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 
+const defaultTheme = require("tailwindcss/defaultTheme");
+
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
@@ -7,6 +9,9 @@ export default {
       backgroundImage: {
         sidebarMobile: "url(./assets/images/bg-sidebar-mobile.svg)",
         sidebarDesktop: "url(./assets/images/bg-sidebar-desktop.svg)",
+      },
+      fontFamily: {
+        sans: ['"Ubuntu"', ...defaultTheme.fontFamily.sans],
       },
     },
   },
