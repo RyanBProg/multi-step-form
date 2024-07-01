@@ -8,11 +8,13 @@ export default function FormStep({ stepNo, stepName, currentStep }: Props) {
   return (
     <div className="flex items-center gap-4">
       <div
-        className={`${stepNo === currentStep ? "bg-white" : "bg-transparent"}
-        h-[36px] w-[36px] rounded-full border border-white flex justify-center items-center`}>
+        className={`${
+          stepNo === currentStep ? "bg-lightBlue" : "bg-transparent"
+        }
+        h-[36px] w-[36px] rounded-full border border-lightBlue flex justify-center items-center`}>
         <span
           className={`${
-            stepNo === currentStep ? "text-blue-600" : "text-white"
+            stepNo === currentStep ? "text-marineBlue" : "text-lightBlue"
           }`}>
           {stepNo}
         </span>
