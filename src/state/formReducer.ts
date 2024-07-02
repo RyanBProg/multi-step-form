@@ -1,17 +1,19 @@
-export const userFormAnswers = {
+export const formTemplate = {
   name: "",
   email: "",
   number: "",
   subscriptionType: "",
   addOns: [],
+  currentStep: 1,
 };
 
-type UserFormData = {
+export type UserFormData = {
   name: string;
   email: string;
   number: string;
   subscriptionType: string;
   addOns: string[];
+  currentStep: number;
 };
 
 type ActionType =
@@ -20,11 +22,13 @@ type ActionType =
   | "number_changed"
   | "subscription_changed"
   | "addOn_removed"
-  | "addOn_added";
+  | "addOn_added"
+  | "increased_step"
+  | "decreased_step";
 
-type Action = {
+export type Action = {
   type: ActionType;
-  payload: string | number;
+  payload: string;
 };
 
 export function formReducer(state: UserFormData, action: Action) {
@@ -48,6 +52,10 @@ export function formReducer(state: UserFormData, action: Action) {
       } else {
         return { ...state, addOns: [...state.addOns, action.payload] };
       }
+    case "increased_step":
+      return { ...state, currentStep: state.currentStep + 1 };
+    case "decreased_step":
+      return { ...state, currentStep: state.currentStep - 1 };
     default:
       return state;
   }
