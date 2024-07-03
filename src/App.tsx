@@ -1,14 +1,19 @@
-import { useState } from "react";
 import FormStep from "./components/FormStep";
 import Form from "./components/Form";
+import { useFormContext } from "./context/FormContext";
 
 function App() {
-  const [currentStep, setCurrentStep] = useState(2);
+  const { currentStep } = useFormContext();
 
   return (
     <main className="h-screen bg-lightBlue md:px-2 md:pt-[100px]">
-      <div className="max-w-[900px] md:bg-white h-screen flex flex-col md:mx-auto md:flex-row md:h-[600px] md:p-4 md:rounded-lg">
-        <div className="flex justify-center items-start pt-8 gap-6 bg-sidebarMobile bg-cover bg-no-repeat h-44 md:bg-sidebarDesktop md:justify-start md:flex-col md:h-full md:w-[250px] md:rounded-md md:pl-8 md:gap-8 md:flex-grow md:flex-shrink-0">
+      <div
+        className="max-w-[900px] md:bg-white h-screen flex flex-col 
+      md:mx-auto md:flex-row md:h-[600px] md:p-4 md:rounded-lg md:gap-4">
+        <div
+          className="flex justify-center items-start pt-8 gap-6 bg-sidebarMobile 
+        bg-cover bg-no-repeat h-44 md:bg-sidebarDesktop md:justify-start md:flex-col 
+        md:h-full md:w-[250px] md:rounded-md md:pl-8 md:gap-8 md:flex-shrink-0">
           <FormStep stepNo={1} stepName="Your Info" currentStep={currentStep} />
           <FormStep
             stepNo={2}
