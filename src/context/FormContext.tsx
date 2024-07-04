@@ -42,29 +42,30 @@ type Action = {
 export function formReducer(state: StateType, action: Action) {
   switch (action.type) {
     case "name_changed":
-      return { ...state, name: action.payload || state.name };
+      if (action.payload === undefined) return state;
+      return { ...state, name: action.payload };
 
     case "email_changed":
-      return { ...state, email: action.payload || state.email };
+      if (action.payload === undefined) return state;
+      return { ...state, email: action.payload };
 
     case "number_changed":
-      return { ...state, number: action.payload || state.number };
+      if (action.payload === undefined) return state;
+      return { ...state, number: action.payload };
 
     case "subscription_changed":
-      return {
-        ...state,
-        subscriptionType: action.payload || state.subscriptionType,
-      };
+      if (action.payload === undefined) return state;
+      return { ...state, subscriptionType: action.payload };
 
     case "addOn_removed":
-      if (!action.payload) return state;
+      if (action.payload === undefined) return state;
       const newAddOns = state.addOns.filter(
         (addOn) => addOn !== action.payload
       );
       return { ...state, addOns: [...newAddOns] };
 
     case "addOn_added":
-      if (!action.payload) return state;
+      if (action.payload === undefined) return state;
       if (state.addOns.includes(action.payload)) {
         return state;
       } else {
@@ -72,6 +73,9 @@ export function formReducer(state: StateType, action: Action) {
       }
 
     case "increased_step":
+      if (state.currentStep === 4) {
+        return state;
+      }
       return { ...state, currentStep: state.currentStep + 1 };
 
     case "decreased_step":
