@@ -1,20 +1,24 @@
-import FormPage1 from "./FormPage1";
-import ControlButton from "./ControlButton";
+import { FormEvent } from "react";
+import FormPage1 from "./form-pages/FormPage1";
+import FormPage2 from "./form-pages/FormPage2";
+import { useFormContext } from "../context/FormContext";
 
 export default function Form() {
+  const { currentStep } = useFormContext();
+
+  const handleSubmit = (e: FormEvent) => {
+    e.preventDefault();
+  };
+
   return (
-    <form className="relative px-4 md:px-10 md:flex md:flex-col md:justify-between lg:px-20">
-      <div className="bg-white rounded-xl px-6 py-10 absolute -top-16 right-4 left-4 shadow-md md:relative md:shadow-none md:top-auto md:left-auto md:right-auto md:px-0">
-        <FormPage1 />
-      </div>
-      <div className="fixed bottom-0 left-0 w-full bg-white p-4 flex justify-end md:relative md:left-auto md:px-0">
-        <ControlButton
-          text="Next Step"
-          textColor="text-white"
-          bgColor="bg-marineBlue"
-          action={() => {}}
-        />
-      </div>
+    <form
+      onSubmit={handleSubmit}
+      noValidate
+      className="absolute top-28 right-4 left-4 px-6 py-10 bg-white 
+      shadow-md rounded-xl md:shadow-none md:relative md:top-auto md:left-auto 
+      md:right-auto md:w-full">
+      {currentStep === 1 && <FormPage1 />}
+      {currentStep === 2 && <FormPage2 />}
     </form>
   );
 }
