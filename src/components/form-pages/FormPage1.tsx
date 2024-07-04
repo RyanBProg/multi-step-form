@@ -1,10 +1,8 @@
-import { useState } from "react";
 import ControlButton from "../ControlButton";
+import { useFormContext } from "../../context/FormContext";
 
 export default function FormPage1() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [number, setNumber] = useState("");
+  const { dispatch, name, email, number } = useFormContext();
 
   return (
     <>
@@ -21,7 +19,9 @@ export default function FormPage1() {
           required
           className="border rounded-md p-2 pl-3 w-full mt-1"
           value={name}
-          onChange={(e) => setName(e.target.value)}
+          onChange={(e) =>
+            dispatch({ type: "name_changed", payload: e.target.value })
+          }
         />
       </label>
       <label htmlFor="email" className="text-marineBlue block mt-4">
@@ -33,7 +33,9 @@ export default function FormPage1() {
           required
           className="border rounded-md p-2 pl-3 w-full mt-1"
           value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={(e) =>
+            dispatch({ type: "email_changed", payload: e.target.value })
+          }
         />
       </label>
       <label htmlFor="number" className="text-marineBlue block mt-4">
@@ -45,7 +47,9 @@ export default function FormPage1() {
           required
           className="border rounded-md p-2 pl-3 w-full mt-1"
           value={number}
-          onChange={(e) => setNumber(e.target.value)}
+          onChange={(e) =>
+            dispatch({ type: "number_changed", payload: e.target.value })
+          }
         />
       </label>
       <div className="fixed bottom-0 left-0 right-0 bg-white p-4 flex justify-end md:absolute md:px-6">
@@ -53,7 +57,7 @@ export default function FormPage1() {
           text="Next Step"
           textColor="text-white"
           bgColor="bg-marineBlue"
-          action={() => {}}
+          action={() => dispatch({ type: "increased_step" })}
         />
       </div>
     </>
