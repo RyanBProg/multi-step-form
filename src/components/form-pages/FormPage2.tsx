@@ -27,7 +27,7 @@ export default function FormPage2() {
       <p className="mt-3 mb-5 text-lg text-coolGray">
         You have the option of monthly or yearly billing.
       </p>
-      <div className="flex flex-col gap-4 md:flex-row">
+      <div className="flex flex-col gap-3 md:flex-row">
         <button
           className={` ${planType === "arcade" && "outline"}
           flex rounded-md border p-4 gap-4 grow basis-0 md:flex-col hover:bg-blue-50 
@@ -77,7 +77,7 @@ export default function FormPage2() {
           </div>
         </button>
       </div>
-      <div className="mt-6 flex justify-center items-center gap-6 p-4 bg-blue-50 rounded-md">
+      <div className="mt-4 flex justify-center items-center gap-6 p-4 bg-blue-50 rounded-md">
         <p
           className={`
         ${subscriptionType === "monthly" ? "text-marineBlue" : "text-gray-400"}
