@@ -11,6 +11,7 @@ type StateType = {
   email: string;
   number: string;
   subscriptionType: string;
+  planType: string;
   addOns: string[];
   currentStep: number;
 };
@@ -19,7 +20,8 @@ const initialState: StateType = {
   name: "",
   email: "",
   number: "",
-  subscriptionType: "",
+  subscriptionType: "monthly",
+  planType: "arcade",
   addOns: [],
   currentStep: 1,
 };
@@ -28,7 +30,9 @@ type ActionType =
   | "name_changed"
   | "email_changed"
   | "number_changed"
-  | "subscription_changed"
+  | "subscription_monthly"
+  | "subscription_annual"
+  | "plan_changed"
   | "addOn_removed"
   | "addOn_added"
   | "increased_step"
@@ -53,9 +57,15 @@ export function formReducer(state: StateType, action: Action) {
       if (action.payload === undefined) return state;
       return { ...state, number: action.payload };
 
-    case "subscription_changed":
+    case "subscription_annual":
+      return { ...state, subscriptionType: "annual" };
+
+    case "subscription_monthly":
+      return { ...state, subscriptionType: "monthly" };
+
+    case "plan_changed":
       if (action.payload === undefined) return state;
-      return { ...state, subscriptionType: action.payload };
+      return { ...state, planType: action.payload };
 
     case "addOn_removed":
       if (action.payload === undefined) return state;
