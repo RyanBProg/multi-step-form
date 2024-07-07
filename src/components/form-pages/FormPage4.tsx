@@ -67,7 +67,7 @@ export default function FormPage4() {
         </ul>
       </div>
       <div className="flex justify-between py-8 px-4">
-        <p className="text-gray-400 text-lg">Total (per month)</p>
+        <p className="text-gray-400 text-lg">Total ({subscriptionType})</p>
         <p className="text-purplishBlue font-medium text-lg">
           +${getTotal()}/mo
         </p>
