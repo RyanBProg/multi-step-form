@@ -26,18 +26,18 @@ export default function FormPage3() {
         <button
           tabIndex={-1}
           className={`${
-            addOns.includes("online_services")
+            addOns.includes("online services")
               ? "outline outline-blue-500 outline-2 bg-blue-50"
               : "outline-none"
           }
               grid grid-rows-[1fr_min-content] grid-cols-[min-content_1fr] gap-x-4 items-center 
               rounded-md border p-4 gap-2 hover:bg-blue-50 sm:p-6 sm:gap-6 sm:grid-rows-1 sm:grid-cols-[min-content_1fr_min-content]`}
-          onClick={() => toggleAddon("online_services")}>
+          onClick={() => toggleAddon("online services")}>
           <input
             type="checkbox"
             className="size-5 hover:cursor-pointer row-span-2 sm:row-span-1 sm:size-6"
-            onChange={() => toggleAddon("online_services")}
-            checked={addOns.includes("online_services")}
+            onChange={() => toggleAddon("online services")}
+            checked={addOns.includes("online services")}
           />
           <div className="flex flex-col flex-grow sm:gap-1">
             <h3 className="text-marineBlue font-medium text-left">
@@ -54,18 +54,18 @@ export default function FormPage3() {
         <button
           tabIndex={-1}
           className={`${
-            addOns.includes("larger_storage")
+            addOns.includes("larger storage")
               ? "outline outline-blue-500 outline-2 bg-blue-50"
               : "outline-none"
           }
               grid grid-rows-[1fr_min-content] grid-cols-[min-content_1fr] gap-x-4 items-center 
               rounded-md border p-4 gap-2 hover:bg-blue-50 sm:p-6 sm:gap-6 sm:grid-rows-1 sm:grid-cols-[min-content_1fr_min-content]`}
-          onClick={() => toggleAddon("larger_storage")}>
+          onClick={() => toggleAddon("larger storage")}>
           <input
             type="checkbox"
             className="size-5 hover:cursor-pointer row-span-2 sm:row-span-1 sm:size-6"
-            onChange={() => toggleAddon("larger_storage")}
-            checked={addOns.includes("larger_storage")}
+            onChange={() => toggleAddon("larger storage")}
+            checked={addOns.includes("larger storage")}
           />
           <div className="flex flex-col gap-1 flex-grow">
             <h3 className="text-marineBlue font-medium text-left">
@@ -82,18 +82,18 @@ export default function FormPage3() {
         <button
           tabIndex={-1}
           className={`${
-            addOns.includes("custom_profile")
+            addOns.includes("custom profile")
               ? "outline outline-blue-500 outline-2 bg-blue-50"
               : "outline-none"
           }
               grid grid-rows-[1fr_min-content] grid-cols-[min-content_1fr] gap-x-4 items-center 
               rounded-md border p-4 gap-2 hover:bg-blue-50 sm:p-6 sm:gap-6 sm:grid-rows-1 sm:grid-cols-[min-content_1fr_min-content]`}
-          onClick={() => toggleAddon("custom_profile")}>
+          onClick={() => toggleAddon("custom profile")}>
           <input
             type="checkbox"
             className="size-5 hover:cursor-pointer row-span-2 sm:row-span-1 sm:size-6"
-            onChange={() => toggleAddon("custom_profile")}
-            checked={addOns.includes("custom_profile")}
+            onChange={() => toggleAddon("custom profile")}
+            checked={addOns.includes("custom profile")}
           />
           <div className="flex flex-col gap-1 flex-grow">
             <h3 className="text-marineBlue font-medium text-left">
