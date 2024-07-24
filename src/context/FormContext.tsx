@@ -5,6 +5,7 @@ import {
   useReducer,
   Dispatch,
 } from "react";
+import FormCompleted from "../components/form-pages/FormCompleted";
 
 type StateType = {
   name: string;
@@ -14,6 +15,7 @@ type StateType = {
   planType: string;
   addOns: string[];
   currentStep: number;
+  formComplete: boolean;
 };
 
 const initialState: StateType = {
@@ -24,6 +26,7 @@ const initialState: StateType = {
   planType: "arcade",
   addOns: [],
   currentStep: 1,
+  formComplete: false,
 };
 
 type ActionType =
@@ -36,7 +39,8 @@ type ActionType =
   | "addOn_removed"
   | "addOn_added"
   | "increased_step"
-  | "decreased_step";
+  | "decreased_step"
+  | "form_completed";
 
 type Action = {
   type: ActionType;
@@ -90,6 +94,9 @@ export function formReducer(state: StateType, action: Action) {
 
     case "decreased_step":
       return { ...state, currentStep: state.currentStep - 1 };
+
+    case "form_completed":
+      return { ...state, formComplete: true };
 
     default:
       return state;

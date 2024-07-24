@@ -1,8 +1,33 @@
 import ControlButton from "../ControlButton";
 import { useFormContext } from "../../context/FormContext";
+import { z } from "zod";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+
+const formSchema = z.object({
+  name: z.string().min(2).max(80),
+  email: z.string().email(),
+  number: z.string().min(10).max(12),
+});
+
+type FormSchemaType = z.infer<typeof formSchema>;
 
 export default function FormPage1() {
   const { dispatch, name, email, number } = useFormContext();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormSchemaType>({
+    resolver: zodResolver(formSchema),
+  });
+
+  const onSubmit = () => {
+    // validate
+    // input user data into reducer
+    // go to next step
+    dispatch({ type: "input_data", payload: { ...userData } });
+  };
 
   return (
     <>
@@ -16,8 +41,8 @@ export default function FormPage1() {
           type="text"
           id="name"
           placeholder="e.g. Stephen King"
-          required
           className="border rounded-md p-2 pl-3 w-full mt-1"
+          {...register("email")}
           value={name}
           onChange={(e) =>
             dispatch({ type: "name_changed", payload: e.target.value })

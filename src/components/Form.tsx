@@ -4,9 +4,10 @@ import FormPage2 from "./form-pages/FormPage2";
 import { useFormContext } from "../context/FormContext";
 import FormPage3 from "./form-pages/FormPage3";
 import FormPage4 from "./form-pages/FormPage4";
+import FormCompleted from "./form-pages/FormCompleted";
 
 export default function Form() {
-  const { currentStep } = useFormContext();
+  const { currentStep, formComplete } = useFormContext();
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -22,7 +23,8 @@ export default function Form() {
       {currentStep === 1 && <FormPage1 />}
       {currentStep === 2 && <FormPage2 />}
       {currentStep === 3 && <FormPage3 />}
-      {currentStep === 4 && <FormPage4 />}
+      {currentStep === 4 && !formComplete && <FormPage4 />}
+      {formComplete && <FormCompleted />}
     </form>
   );
 }

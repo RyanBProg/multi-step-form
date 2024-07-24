@@ -83,7 +83,7 @@ export default function FormPage4() {
           text="Confirm"
           textColor="text-white"
           bgColor="bg-purplishBlue"
-          action={() => dispatch({ type: "increased_step" })}
+          action={() => dispatch({ type: "form_completed" })}
         />
       </div>
     </>
