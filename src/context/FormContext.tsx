@@ -29,9 +29,7 @@ const initialState: StateType = {
 };
 
 type ActionType =
-  | "name_changed"
-  | "email_changed"
-  | "number_changed"
+  | "user_data_submitted"
   | "subscription_monthly"
   | "subscription_annual"
   | "plan_changed"
@@ -41,24 +39,30 @@ type ActionType =
   | "decreased_step"
   | "form_completed";
 
-type Action = {
-  type: ActionType;
-  payload?: string;
+type UserPayload = {
+  name: string;
+  email: string;
+  number: string;
 };
 
-export function formReducer(state: StateType, action: Action) {
+type Action = {
+  type: ActionType;
+  payload?: string | UserPayload;
+};
+
+export function formReducer(state: StateType, action: Action): StateType {
   switch (action.type) {
-    case "name_changed":
-      if (action.payload === undefined) return state;
-      return { ...state, name: action.payload };
-
-    case "email_changed":
-      if (action.payload === undefined) return state;
-      return { ...state, email: action.payload };
-
-    case "number_changed":
-      if (action.payload === undefined) return state;
-      return { ...state, number: action.payload };
+    case "user_data_submitted":
+      if (typeof action.payload !== "object" || action.payload === null)
+        return state;
+      const userPayload = action.payload as UserPayload;
+      return {
+        ...state,
+        name: userPayload.name,
+        email: userPayload.email,
+        number: userPayload.number,
+        currentStep: state.currentStep + 1,
+      };
 
     case "subscription_annual":
       return { ...state, subscriptionType: "annual" };
@@ -67,18 +71,18 @@ export function formReducer(state: StateType, action: Action) {
       return { ...state, subscriptionType: "monthly" };
 
     case "plan_changed":
-      if (action.payload === undefined) return state;
+      if (typeof action.payload !== "string") return state;
       return { ...state, planType: action.payload };
 
     case "addOn_removed":
-      if (action.payload === undefined) return state;
+      if (typeof action.payload !== "string") return state;
       const newAddOns = state.addOns.filter(
         (addOn) => addOn !== action.payload
       );
-      return { ...state, addOns: [...newAddOns] };
+      return { ...state, addOns: newAddOns };
 
     case "addOn_added":
-      if (action.payload === undefined) return state;
+      if (typeof action.payload !== "string") return state;
       if (state.addOns.includes(action.payload)) {
         return state;
       } else {
@@ -106,9 +110,7 @@ interface FormContextType extends StateType {
   dispatch: Dispatch<Action>;
 }
 
-export const FormContext = createContext<FormContextType | undefined>(
-  undefined
-);
+const FormContext = createContext<FormContextType | undefined>(undefined);
 
 type Props = {
   children: ReactNode;
@@ -128,7 +130,7 @@ export function useFormContext() {
   const context = useContext(FormContext);
 
   if (!context) {
-    throw new Error("FormContext must be used within a FormProvider");
+    throw new Error("useFormContext must be used within a FormProvider");
   }
 
   return context;

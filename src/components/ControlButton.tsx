@@ -13,6 +13,7 @@ export default function ControlButton({
 }: Props) {
   return (
     <button
+      type="button"
       className={`${bgColor} ${textColor} rounded-md p-2 px-4 transition-colors hover:brightness-125`}
       onClick={action}>
       {text}

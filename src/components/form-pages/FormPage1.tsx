@@ -1,34 +1,12 @@
-import ControlButton from "../ControlButton";
-import { useFormContext } from "../../context/FormContext";
-import { z } from "zod";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { UseFormRegister, FieldErrors } from "react-hook-form";
+import { TFormInput } from "../Form";
 
-const formSchema = z.object({
-  name: z.string().min(2).max(80),
-  email: z.string().email(),
-  number: z.string().min(10).max(12),
-});
+interface FormPage1Props {
+  register: UseFormRegister<TFormInput>;
+  errors: FieldErrors<TFormInput>;
+}
 
-type FormSchemaType = z.infer<typeof formSchema>;
-
-export default function FormPage1() {
-  const { dispatch, name, email, number } = useFormContext();
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<FormSchemaType>({
-    resolver: zodResolver(formSchema),
-  });
-
-  const onSubmit = () => {
-    // validate
-    // input user data into reducer
-    // go to next step
-    dispatch({ type: "input_data", payload: { ...userData } });
-  };
-
+export default function FormPage1({ register, errors }: FormPage1Props) {
   return (
     <>
       <h1 className="text-marineBlue text-3xl font-semibold">Personal Info</h1>
@@ -42,12 +20,9 @@ export default function FormPage1() {
           id="name"
           placeholder="e.g. Stephen King"
           className="border rounded-md p-2 pl-3 w-full mt-1"
-          {...register("email")}
-          value={name}
-          onChange={(e) =>
-            dispatch({ type: "name_changed", payload: e.target.value })
-          }
+          {...register("name", { required: "Name is required" })}
         />
+        {errors.name && <p className="text-red-500">{errors.name.message}</p>}
       </label>
       <label htmlFor="email" className="text-marineBlue block mt-4">
         Email Address
@@ -55,13 +30,13 @@ export default function FormPage1() {
           type="email"
           id="email"
           placeholder="stephenking@gmail.com"
-          required
           className="border rounded-md p-2 pl-3 w-full mt-1"
-          value={email}
-          onChange={(e) =>
-            dispatch({ type: "email_changed", payload: e.target.value })
-          }
+          {...register("email", {
+            required: "Email is required",
+            pattern: { value: /^\S+@\S+$/i, message: "Invalid email address" },
+          })}
         />
+        {errors.email && <p className="text-red-500">{errors.email.message}</p>}
       </label>
       <label htmlFor="number" className="text-marineBlue block mt-4">
         Phone Number
@@ -69,21 +44,21 @@ export default function FormPage1() {
           type="text"
           id="number"
           placeholder="e.g. +1 234 567 890"
-          required
           className="border rounded-md p-2 pl-3 w-full mt-1"
-          value={number}
-          onChange={(e) =>
-            dispatch({ type: "number_changed", payload: e.target.value })
-          }
+          {...register("number", {
+            required: "Phone number is required",
+            minLength: { value: 6, message: "Minimum length is 6" },
+            maxLength: { value: 12, message: "Maximum length is 12" },
+          })}
         />
+        {errors.number && (
+          <p className="text-red-500">{errors.number.message}</p>
+        )}
       </label>
       <div className="fixed bottom-0 left-0 right-0 bg-white p-4 flex justify-end md:absolute md:px-6">
-        <ControlButton
-          text="Next Step"
-          textColor="text-white"
-          bgColor="bg-marineBlue"
-          action={() => dispatch({ type: "increased_step" })}
-        />
+        <button className="bg-marineBlue text-white rounded-md p-2 px-4 transition-colors hover:brightness-125">
+          Next Step
+        </button>
       </div>
     </>
   );

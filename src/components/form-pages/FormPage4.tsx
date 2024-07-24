@@ -59,7 +59,9 @@ export default function FormPage4() {
         </div>
         <ul className="mt-6 flex flex-col gap-2">
           {addOns.map((addOn) => (
-            <li className="capitalize text-gray-400 flex justify-between">
+            <li
+              key={addOn}
+              className="capitalize text-gray-400 flex justify-between">
               <p>{addOn}</p>
               <p className="text-marineBlue">+${getAddonPrice(addOn)}/mo</p>
             </li>

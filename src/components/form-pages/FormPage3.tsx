@@ -24,6 +24,7 @@ export default function FormPage3() {
       </p>
       <div className="flex flex-col gap-3 sm:gap-4">
         <button
+          type="button"
           tabIndex={-1}
           className={`${
             addOns.includes("online services")
@@ -52,6 +53,7 @@ export default function FormPage3() {
           </p>
         </button>
         <button
+          type="button"
           tabIndex={-1}
           className={`${
             addOns.includes("larger storage")
@@ -80,6 +82,7 @@ export default function FormPage3() {
           </p>
         </button>
         <button
+          type="button"
           tabIndex={-1}
           className={`${
             addOns.includes("custom profile")

@@ -29,6 +29,7 @@ export default function FormPage2() {
       </p>
       <div className="flex flex-col gap-3 md:flex-row">
         <button
+          type="button"
           className={` ${planType === "arcade" && "outline"}
           flex rounded-md border p-4 gap-4 grow basis-0 md:flex-col hover:bg-blue-50 
           focus:bg-blue-50 focus:outline outline-2 outline-blue-500`}
@@ -45,6 +46,7 @@ export default function FormPage2() {
           </div>
         </button>
         <button
+          type="button"
           className={` ${planType === "advanced" && "outline"}
           flex rounded-md border p-4 gap-4 grow basis-0 md:flex-col hover:bg-blue-50 
           focus:bg-blue-50 focus:outline outline-2 outline-blue-500`}
@@ -63,6 +65,7 @@ export default function FormPage2() {
           </div>
         </button>
         <button
+          type="button"
           className={` ${planType === "pro" && "outline"}
           flex rounded-md border p-4 gap-4 grow basis-0 md:flex-col hover:bg-blue-50 
           focus:bg-blue-50 focus:outline outline-2 outline-blue-500`}
@@ -86,6 +89,7 @@ export default function FormPage2() {
           Monthly
         </p>
         <button
+          type="button"
           className="bg-marineBlue h-6 w-10 rounded-full px-1 relative"
           onClick={toggleSubcription}>
           <div
