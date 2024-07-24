@@ -5,7 +5,6 @@ import {
   useReducer,
   Dispatch,
 } from "react";
-import FormCompleted from "../components/form-pages/FormCompleted";
 
 type StateType = {
   name: string;
