@@ -2,8 +2,8 @@ import tickIcon from "../../assets/images/icon-thank-you.svg";
 
 export default function FormCompleted() {
   return (
-    <div>
-      <img src={tickIcon} alt="tick icon" className="mx-auto" />
+    <div className="h-full flex flex-col items-center justify-center">
+      <img src={tickIcon} alt="tick icon" className="mb-8" />
       <h1 className="text-marineBlue text-3xl font-semibold text-center">
         Thank you!
       </h1>
